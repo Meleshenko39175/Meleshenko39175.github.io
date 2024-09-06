@@ -96,6 +96,38 @@ h3 {
   color: #454545;
 }
 
+@keyframes anim_leafbg {
+  0% {padding-top: 50%}
+  100% {padding-top: 100%}
+}
+
+@keyframes anim-rainbow {
+  0% {background-color: rgb(255,0,0);}
+  17%  {background-color: rgb(255,255,0);}
+  34%  {background-color: rgb(0,255,0);}
+  51%  {background-color: rgb(0,255,255);}
+  68%  {background-color: rgb(0,0,255);}
+  83% {background-color: rgb(255,0,255);}
+  100% {background-color: rgb(255,0,0);}
+}
+
+#centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#rainbow {
+  background-color: red;
+  background-image: url("leafsticker.png");
+  background-repeat: repeat;
+  animation-name: anim-rainbow;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 10s;
+}
 /* responsive web design
 @media screen and (min-width: 120px) and (max-width: 1080px) {
   main {
