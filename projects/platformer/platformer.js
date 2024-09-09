@@ -28,7 +28,7 @@ $(function () {
      * Comment the function call out to remove the grid
      */
 
-    drawGrid();
+    //drawGrid();
 
     /////////////////////////////////////////////////
     //////////ONLY CHANGE BELOW THIS POINT///////////
@@ -44,6 +44,12 @@ $(function () {
     createPlatform(650, 300, 100, 300);
     createPlatform(950, 650, 100, 100);
     createPlatform(750, 550, 100, 50);
+    createPlatform(950, 450, 100, 50);
+    createPlatform(1150, 450, 200, 50);
+    createPlatform(750, 350, 100, 50);
+    createPlatform(550, 300, 100, 50);
+    createPlatform(300, 300, 100, 50);
+    createPlatform(200, 0, 100, 350);
 
     // TODO 2
     // Create collectables
@@ -56,7 +62,13 @@ $(function () {
     createCollectable("database", 400, 500, 0, 0);
     createCollectable("database", 450, 500, 0, 0);
     createCollectable("database", 975, 600, 0, 0);
-    createCollectable("kennedi", 775, 500, 0, 0);
+    createCollectable("database", 775, 500, 0, 0);
+    createCollectable("database", 975, 400, 0, 0);
+    createCollectable("max", 1175, 400, 0, 0);
+    createCollectable("max", 1225, 400, 0, 0);
+    createCollectable("max", 1275, 400, 0, 0);
+    createCollectable("database", 775, 300, 0, 0);
+    createCollectable("kennedi", 325, 250, 0, 0);
 
     // TODO 3
     // Create cannons
@@ -64,7 +76,9 @@ $(function () {
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay, width, height)
 
-    createCannon("right", 700, 3500, 100, 100);
+    createCannon("right", 500, 5000, 50, 25);
+    createCannon("left", 100, 1500, 100, 50);
+    createCannon("right", 700, 5500, 100, 100);
     /////////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
     /////////////////////////////////////////////////
