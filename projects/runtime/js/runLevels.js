@@ -48,6 +48,7 @@ var runLevels = function (window) {
       enemy.onPlayerCollision = function () {
         game.changeIntegrity(-10);
       };
+
       enemy.onProjectileCollision = function () {
         game.increaseScore(100);
         enemy.shrink();
@@ -59,25 +60,72 @@ var runLevels = function (window) {
       obstacleImage.y = -25;
       enemy.addChild(obstacleImage);
     }
-    createSawBlade(400, 300);
-    createSawBlade(800, 300);
-    createSawBlade(1200, 300, 50);
-    createEnemy(1000);
-    createEnemy(1400);
-    for (var i = 0; i < 25; i++) {
-      createEnemy(3000 + i * 5);
+
+    function createReward(posx, posy, value = 10) {
+      var collectableSprite = draw.circle(10, "#ffF9f0", "#ffF9f0", 1);
+      var collectable = game.createGameItem("reward", 25);
+      collectable.addChild(collectableSprite);
+      collectable.x = posx;
+      collectable.y = groundY - posy;
+      collectable.velocityX = -1.5;
+      collectable.onPlayerCollision = function () {
+        game.increaseScore(100);
+        collectable.shrink();
+      };
+
+      collectable.onProjectileCollision = function () {
+        collectable.shrink();
+      };
+      game.addGameItem(collectable);
+    }
+
+    function createMarker(posx) {
+      var markerSprite = draw.circle(50, "#FFFFFF", "#FFFFFF", 1);
+      var marker = game.createGameItem("marker", 25);
+      marker.addChild(markerSprite);
+      marker.x = posx;
+      marker.y = groundY - 20;
+      marker.velocityX = -1.5;
+      marker.onPlayerCollision = function () {
+        marker.shrink()
+        startLevel();
+      };
+      marker.onProjectileCollision = function () {
+        marker.shrink()
+        startLevel();
+      };
+      game.addGameItem(marker);
     }
 
     function startLevel() {
       // TODO 13 goes below here
-      //////////////////////////////////////////////
-      // DO NOT EDIT CODE BELOW HERE
-      //////////////////////////////////////////////
-      if (++currentLevel === levelData.length) {
-        startLevel = () => {
-          console.log("Congratulations!");
-        };
+      var level = levelData[currentLevel];
+      var levelObjects = level["gameItems"];
+      for (
+        var gameObjectIndex = 0;
+        gameObjectIndex < levelObjects.length;
+        gameObjectIndex++
+      ) {
+        var currentObject = levelObjects[gameObjectIndex];
+        if (currentObject.type == "sawblade") {
+          createSawBlade(currentObject.x, currentObject.y);
+        } else if (currentObject.type == "enemy") {
+          createEnemy(currentObject.x, currentObject.y);
+        } else if (currentObject.type == "reward") {
+          createReward(currentObject.x, currentObject.y);
+        } else if (currentObject.type == "marker") {
+          createMarker(currentObject.x);
+        }
       }
+    }
+
+    //////////////////////////////////////////////
+    // DO NOT EDIT CODE BELOW HERE
+    //////////////////////////////////////////////
+    if (++currentLevel === levelData.length) {
+      startLevel = () => {
+        console.log("Congratulations!");
+      };
     }
     startLevel();
   };
