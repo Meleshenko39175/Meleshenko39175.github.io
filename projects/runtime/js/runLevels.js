@@ -87,11 +87,11 @@ var runLevels = function (window) {
       marker.y = groundY - 20;
       marker.velocityX = -1.5;
       marker.onPlayerCollision = function () {
-        marker.shrink()
+        currentLevel ++
         startLevel();
       };
       marker.onProjectileCollision = function () {
-        marker.shrink()
+        currentLevel ++
         startLevel();
       };
       game.addGameItem(marker);
